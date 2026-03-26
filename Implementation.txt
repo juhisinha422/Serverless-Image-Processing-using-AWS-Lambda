@@ -1,0 +1,90 @@
+ Serverless Image Processing Pipeline (AWS | Terraform | Lambda)
+Built a backend-only serverless image processing system that automatically transforms images uploaded to Amazon S3 using AWS Lambda.
+
+🎯 Architecture Overview
+When a user uploads an image:
+📤 Image uploaded to S3 Upload Bucket
+⚡ S3 Event Trigger invokes Lambda automatically
+🖼️ Lambda processes image into multiple optimized formats
+📦 Processed images stored in S3 Processed Bucket
+
+Fully automated. No servers. No manual intervention.
+
+🧱 Core AWS Services Used
+🗂️ Amazon S3 – Storage for original & processed images
+⚡ AWS Lambda – Event-driven image processor
+📦 Lambda Layer (Pillow 10.4.0) – Image manipulation library
+🔔 S3 Event Notifications – Auto-trigger on object upload
+📊 Amazon CloudWatch – Logging & monitoring
+🏗️ Terraform – Infrastructure as Code (IaC)
+
+🎨 Image Variants Generated
+For every uploaded image:
+✅ Compressed JPEG (85% quality)
+✅ Low Quality JPEG (60%)
+✅ WebP (modern optimized format)
+✅ PNG (lossless format)
+✅ Thumbnail (200x200)
+
+Example:
+Original: 500 KB
+Compressed: ~120 KB
+Low Quality: ~80 KB
+WebP: ~95 KB
+Thumbnail: ~15 KB
+
+⚙️ Key Features
+🔁 Fully event-driven architecture
+🔐 Private S3 buckets (no public access)
+🔒 AES256 server-side encryption
+🛡️ IAM least-privilege permissions
+📦 Infrastructure automated via Terraform
+♻️ Force destroy enabled for dev cleanup
+🌍 Region independent deployment
+
+📊 Performance Metrics
+⚡ Cold start: ~470ms
+🚀 Warm execution: 300–600ms
+🧠 Memory usage: ~113MB (1024MB allocated)
+⏱️ ~100ms per image variant
+
+Efficient and production-ready.
+
+💰 Cost Optimization
+Estimated monthly cost (1,000 images):
+S3 storage: ~$0.02 per GB
+Lambda: First 1M requests free
+Total estimated: $0.50 – $2.00/month
+Highly scalable and cost-effective.
+
+🔧 Customization Options
+Adjust compression levels
+Modify thumbnail dimensions
+Add additional image formats
+Tune Lambda timeout & memory
+Integrate with CloudFront for CDN delivery
+Extend to Rekognition for AI-based tagging
+
+📈 Real-World Use Cases
+E-commerce image optimization
+Social media platforms
+Portfolio hosting
+Content management systems
+SaaS applications handling media uploads
+
+🧹 Deployment & Cleanup
+One-command deployment via script
+Automated infrastructure provisioning
+Clean destroy using Terraform
+
+🏆 Key Learning Outcomes
+Event-driven serverless design
+Handling S3 object versioning challenges
+Managing bucket deletion with force_destroy
+Debugging Docker & Lambda layer builds
+Production-grade IaC structuring
+
+🔥 Tech Stack
+AWS | S3 | Lambda | CloudWatch | Terraform | Docker | Python | Pillow | CLI Automation
+
+If you're building scalable backend systems using AWS — this project demonstrates practical, production-oriented serverless architecture principles.
