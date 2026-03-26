@@ -8,4 +8,6 @@
   - Include architecture diagram showing S3 → Lambda → S3 flow
   - Add screenshots of deployment and processed images
   - Document Lambda layers and serverless architecture
+     
+  - https://awspolicygen.s3.amazonaws.com/policygen.html (AWS Policy generator)
 
