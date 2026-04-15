@@ -1,0 +1,172 @@
+Project: Serverless Event-Driven Image Processing System on AWS
+Project Objective
+
+Build a fully serverless, event-driven architecture that:
+
+Accepts image uploads
+
+Automatically resizes images
+
+Stores processed images
+
+Sends notification to users
+
+Is scalable, secure, and cost-optimized
+
+All using
+Amazon Web Services
+
+Final Architecture
+User
+  ↓
+S3 (Upload Bucket)
+  ↓ (Event Trigger)
+Lambda Function
+  ↓
+S3 (Processed Bucket)
+  ↓
+SNS Notification
+  ↓
+CloudWatch Monitoring
+
+Services Used
+Layer	AWS Service
+Storage	Amazon S3
+Compute	AWS Lambda
+Notifications	Amazon SNS
+Monitoring	Amazon CloudWatch
+Security	IAM Roles
+API Layer (Optional)	Amazon API Gateway
+Step 1: Create S3 Buckets
+
+Create two buckets:
+
+image-upload-bucket
+image-processed-bucket
+
+Enable:
+
+Versioning
+
+Block public access (secure by default)
+
+Step 2: Create Lambda Function
+
+Create:
+
+AWS Lambda
+
+Runtime:
+
+Python / Node.js
+
+Logic:
+
+Triggered when image uploaded to S3
+
+Resize image
+
+Store in processed bucket
+
+Publish SNS notification
+
+Attach IAM Role with:
+
+S3 read/write
+
+SNS publish
+
+CloudWatch logs
+
+Step 3: Configure S3 Event Trigger
+
+In upload bucket:
+
+Add Event Notification:
+
+Event Type → PUT
+
+Destination → Lambda
+
+Now every upload automatically triggers processing.
+
+Step 4: Create SNS Topic
+
+Create:
+
+ Amazon SNS
+
+Add:
+
+Email subscription
+
+Lambda publishes message:
+“Image processed successfully.”
+
+Step 5: Monitoring & Alerts
+
+Use:
+
+Amazon CloudWatch
+
+Configure:
+
+Lambda error alarms
+
+S3 event failures
+
+SNS delivery status
+
+Billing alerts
+
+Optional Advanced Version
+
+Add:
+
+Amazon API Gateway
+
+Flow becomes:
+
+User → API Gateway → Lambda → S3
+
+
+Now it's a REST API-based serverless app.
+
+Security Implementation
+
+Least privilege IAM roles
+
+S3 bucket policy restrictions
+
+Encryption at rest (S3 + Lambda)
+
+Enable CloudTrail logging
+
+Cost Optimization
+
+Why this project is good:
+
+No EC2 servers
+No idle compute
+Pay per request
+Highly scalable automatically
+
+Perfect example of serverless architecture.
+
+High Availability & Scalability
+
+Lambda scales automatically
+
+S3 is highly durable
+
+SNS is fully managed
+
+No infrastructure management
+
+Disaster Recovery
+
+Enable S3 cross-region replication
+
+Backup SNS configurations
+
+Use Infrastructure as Code (Terraform)
